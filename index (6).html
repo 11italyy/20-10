@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffeef4">
+<meta name="color-scheme" content="light">
+<title>Chúc mừng 20/10</title>
+<meta name="description" content="Một lời chúc 20/10 viết riêng cho từng người.">
+<meta property="og:title" content="Chúc mừng 20/10">
+<meta property="og:description" content="Nhập họ và tên để mở lời chúc dành riêng cho cậu.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌸%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500&family=Dancing+Script:wght@500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap">
+<style>
+:root{--ink:#7a2e4d;--soft:#b87a93;--accent:#e0678f;--line:#f6cfdb;color-scheme:light}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;min-height:100dvh;font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:linear-gradient(160deg,#fffafc,#ffe9f0);position:relative;overflow-x:hidden}
+.blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.55;z-index:0;pointer-events:none}
+.b1{width:320px;height:320px;background:#ffc4d6;top:-90px;left:-80px}
+.b2{width:280px;height:280px;background:#ffdce8;bottom:-80px;right:-60px}
+.br{position:fixed;width:min(46vw,210px);z-index:0;pointer-events:none;opacity:.9}
+.tl{top:0;left:0}.brr{bottom:0;right:0;transform:rotate(180deg)}
+.fp{position:fixed;bottom:-30px;z-index:0;pointer-events:none;border-radius:50% 0 50% 0;background:linear-gradient(135deg,#ffc9db,#ffa9c6);opacity:0;animation:up linear infinite}
+.fp.dt{border-radius:50%;background:#fff;box-shadow:0 0 10px 2px #ffb3cb}
+@keyframes up{0%{transform:translate(0,0) rotate(0);opacity:0}10%{opacity:.6}90%{opacity:.45}100%{transform:translate(50px,-112vh) rotate(360deg);opacity:0}}
+main{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:max(44px,env(safe-area-inset-top)) 20px max(60px,env(safe-area-inset-bottom));text-align:center}
+.wm{position:absolute;left:0;right:0;top:8px;z-index:-1;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:clamp(110px,34vw,170px);line-height:1;color:rgba(240,138,176,.14);user-select:none;letter-spacing:-.04em}
+.flower{width:64px;height:64px;margin:0 auto 6px;display:block;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.eyebrow{letter-spacing:.35em;font-size:12px;text-transform:uppercase;color:var(--soft);margin:0 0 10px}
+h1{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(34px,9vw,48px);line-height:1.15;margin:0 0 12px}
+h1 em{color:var(--accent);font-weight:500}
+.gar{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto 14px;width:200px}
+.gar i{flex:1;height:1px;background:linear-gradient(90deg,transparent,#e9a0bb)}.gar i:last-child{transform:scaleX(-1)}
+.gar svg{width:18px;height:18px}
+.sub{color:var(--soft);font-weight:300;margin:0 auto 28px;max-width:340px;line-height:1.6;font-size:15px}
+.search{display:flex;gap:8px;background:rgba(255,255,255,.8);border:1px solid var(--line);border-radius:999px;padding:6px;box-shadow:0 0 0 6px rgba(255,255,255,.45),0 10px 30px rgba(224,103,143,.18);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.search input{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:16px;color:var(--ink);padding:10px 16px;outline:none}
+.search input::placeholder{color:#d3a6b8}
+.search button,.ghost{font:inherit;cursor:pointer;border:0;border-radius:999px}
+.search button{background:linear-gradient(135deg,#f08ab0,#e0678f);color:#fff;padding:10px 22px;font-weight:500;transition:transform .2s}
+.search button:active{transform:scale(.95)}
+.hint{font-size:12.5px;font-style:italic;color:var(--soft);margin:12px 0 0}
+.err{min-height:20px;font-size:13.5px;color:var(--accent);margin:10px 0 0}
+#stage{margin-top:22px;perspective:1000px;position:relative;z-index:6}
+/* thiệp */
+.wish{--c1:#fff;--c2:#ffe3ec;--tx:#7a2e4d;--ac:#e0678f;position:relative;padding:34px 26px 28px;color:var(--tx);background:var(--pat,linear-gradient(transparent,transparent)),linear-gradient(150deg,var(--c1),var(--c2));box-shadow:0 20px 50px rgba(0,0,0,.14);border:1px solid rgba(255,255,255,.7);overflow:hidden}
+.wish::before,.wish::after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.55),transparent 70%)}
+.wish::before{top:-50px;right:-40px}.wish::after{bottom:-60px;left:-50px}
+.wish>:not(.bg){position:relative;z-index:1}
+.f0{border-radius:26px}
+.f1{border-radius:160px 160px 26px 26px;padding-top:58px}
+.f2{border-radius:20px;outline:1.5px solid var(--ac);outline-offset:-10px;padding:40px 30px 34px}
+.f3{border-radius:72px 22px 72px 22px}
+.f4{border-radius:12px;outline:1.5px dashed var(--ac);outline-offset:-10px;padding:40px 30px 34px}
+.f5{border-radius:44px 44px 44px 6px}
+.mo{fill:currentColor;color:var(--ac)}
+.bg{position:absolute;opacity:.13;z-index:0}
+.bg.b1{width:110px;height:110px;top:-18px;left:-18px;transform:rotate(-20deg);filter:none;background:none;border-radius:0}
+.bg.b2{width:80px;height:80px;bottom:-14px;right:-10px;transform:rotate(25deg);background:none;border-radius:0;filter:none}
+.bg.b3{width:50px;height:50px;top:46%;right:10px;transform:rotate(10deg);opacity:.1;background:none;border-radius:0;filter:none}
+.big{width:48px;height:48px;display:block;margin:0 auto 8px}
+.sm{width:16px;height:16px;flex:none}
+.to{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--ac);margin:0 0 6px}
+.nm{margin:0 0 4px;font-weight:600;font-family:'Playfair Display',Georgia,serif;font-size:clamp(26px,7.5vw,34px)}
+.n1 .nm{font-family:'Dancing Script','Playfair Display',cursive;font-size:clamp(36px,10vw,46px);font-weight:600}
+.n2 .nm{font-family:'Be Vietnam Pro',sans-serif;font-size:clamp(20px,5.8vw,25px);font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+.full{font-size:13px;opacity:.7;margin:0 0 14px}
+.div{display:flex;align-items:center;gap:10px;margin:0 auto 18px;width:150px}
+.div i{flex:1;height:1px;background:var(--ac);opacity:.5}
+.txt{font-size:16.5px;line-height:1.75;margin:0;font-weight:300}
+.sig{margin:20px 0 0;font-family:'Playfair Display',Georgia,serif;font-style:italic;color:var(--ac);font-size:15px}
+.a0{animation:rise .9s cubic-bezier(.2,.9,.3,1.2) both}
+.a1{animation:pop .8s cubic-bezier(.2,1.4,.4,1) both}
+.a2{animation:drop .9s cubic-bezier(.3,1.3,.5,1) both}
+.a3{animation:swirl .9s cubic-bezier(.2,.9,.3,1.1) both}
+@keyframes rise{from{opacity:0;transform:translateY(40px) scale(.92) rotateX(12deg)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes drop{from{opacity:0;transform:translateY(-70px)}to{opacity:1;transform:none}}
+@keyframes swirl{from{opacity:0;transform:rotate(-10deg) scale(.8) translateX(-30px)}to{opacity:1;transform:none}}
+.ghost{background:rgba(255,255,255,.55);border:1px solid var(--line);color:var(--soft);padding:9px 18px;font-size:13.5px;margin:18px 6px 0}
+.ghost:hover{color:var(--accent);border-color:var(--accent)}
+canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+@media (prefers-reduced-motion:reduce){.fp,.flower{animation:none}}
+.f6{border-radius:6px;border:12px solid #fff;border-bottom-width:34px;rotate:-1.2deg;padding:26px 16px 12px;box-shadow:0 20px 50px rgba(0,0,0,.2)}
+.wish .gl{inset:0;opacity:1;overflow:hidden}
+.gl span{position:absolute;color:var(--ac);opacity:.17;font-family:'Be Vietnam Pro',system-ui,sans-serif;line-height:1;white-space:nowrap}
+.gl span:nth-child(1){left:7%;top:5%;font-size:38px;transform:rotate(-12deg)}
+.gl span:nth-child(2){right:8%;top:9%;font-size:28px;transform:rotate(10deg)}
+.gl span:nth-child(3){left:5%;top:48%;font-size:26px;transform:rotate(8deg)}
+.gl span:nth-child(4){right:6%;top:44%;font-size:36px;transform:rotate(-8deg)}
+.gl span:nth-child(5){left:12%;bottom:6%;font-size:30px;transform:rotate(12deg)}
+.gl span:nth-child(6){right:10%;bottom:7%;font-size:34px;transform:rotate(-10deg)}
+.by{margin:16px 0 0;font-size:14px;opacity:.85;font-style:italic}
+.lg .txt{font-size:15.5px;line-height:1.7}
+.ghost+.ghost{margin-left:0}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="fl" viewBox="-10 -10 20 20"><g fill="#ffc2d6"><circle cy="-5.5" r="4.2"/><circle cy="-5.5" r="4.2" transform="rotate(72)"/><circle cy="-5.5" r="4.2" transform="rotate(144)"/><circle cy="-5.5" r="4.2" transform="rotate(216)"/><circle cy="-5.5" r="4.2" transform="rotate(288)"/></g><circle r="2.6" fill="#fff3c9"/></symbol></svg>
+<div class="blob b1"></div><div class="blob b2"></div>
+<svg class="br tl" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#f3b2c8" stroke-width="1.6" stroke-linecap="round"><path d="M0 16C60 22 120 60 150 190"/><path d="M0 76C40 76 80 104 96 156"/></g><g fill="#ffd9e6"><ellipse cx="34" cy="24" rx="13" ry="5" transform="rotate(14 34 24)"/><ellipse cx="86" cy="44" rx="13" ry="5" transform="rotate(38 86 44)"/><ellipse cx="124" cy="92" rx="13" ry="5" transform="rotate(66 124 92)"/><ellipse cx="38" cy="82" rx="12" ry="4.5" transform="rotate(22 38 82)"/><ellipse cx="78" cy="118" rx="12" ry="4.5" transform="rotate(54 78 118)"/></g><use href="#fl" x="52" y="2" width="28" height="28"/><use href="#fl" x="100" y="62" width="30" height="30"/><use href="#fl" x="136" y="128" width="26" height="26"/><use href="#fl" x="58" y="92" width="22" height="22"/></svg>
+<svg class="br brr" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#f3b2c8" stroke-width="1.6" stroke-linecap="round"><path d="M0 16C60 22 120 60 150 190"/><path d="M0 76C40 76 80 104 96 156"/></g><g fill="#ffd9e6"><ellipse cx="34" cy="24" rx="13" ry="5" transform="rotate(14 34 24)"/><ellipse cx="86" cy="44" rx="13" ry="5" transform="rotate(38 86 44)"/><ellipse cx="124" cy="92" rx="13" ry="5" transform="rotate(66 124 92)"/></g><use href="#fl" x="52" y="2" width="28" height="28"/><use href="#fl" x="100" y="62" width="30" height="30"/><use href="#fl" x="58" y="92" width="22" height="22"/></svg>
+<canvas id="fx"></canvas>
+<main>
+  <div class="wm" aria-hidden="true">20/10</div>
+  <svg class="flower" viewBox="0 0 64 64" fill="none" stroke="#e0678f" stroke-width="1.4" aria-hidden="true">
+    <g transform="translate(32 32)"><g id="p"><ellipse cx="0" cy="-15" rx="7" ry="13" fill="#ffdbe7"/></g>
+    <use href="#p" transform="rotate(72)"/><use href="#p" transform="rotate(144)"/><use href="#p" transform="rotate(216)"/><use href="#p" transform="rotate(288)"/>
+    <circle r="5" fill="#fff3c9" stroke="#e8b84f"/></g>
+  </svg>
+  <p class="eyebrow">20 · 10</p>
+  <h1>Chúc mừng <em>ngày của các cậu</em></h1>
+  <div class="gar"><i></i><svg viewBox="-10 -10 20 20"><use href="#fl" x="-10" y="-10" width="20" height="20"/></svg><i></i></div>
+  <p class="sub">Có một lời chúc nhỏ được viết riêng cho từng người. Thử tìm xem lời nào là của cậu nhé.</p>
+  <div class="search">
+    <input id="name" type="text" placeholder="Nhập họ và tên của cậu" autocomplete="off" aria-label="Họ và tên">
+    <button id="go">Mở quà</button>
+  </div>
+  <p class="hint">Cậu nhập cả họ và tên nhé!</p>
+  <p class="err" id="err"></p>
+  <div id="stage"></div>
+</main>
+
+<script>
+/* [họ tên, tên gọi, lời chúc, người ký, hiệu ứng, nền1, nền2, chữ, nhấn, họa tiết, khung, phông, trang trí] */
+const W=[
+[
+"Phạm Vũ Hòa An",
+"Hòa An",
+"Ai đó đã từng nói: “Đặc sản Hải Dương à, có phải Hòa An không?” Chắc sự ngọt ngào đã làm người ấy nhầm lẫn đấy! Chúc cậu luôn giữ được nét riêng của mình, mãi là ‘đặc sản’ trong lòng các chàng trai nhé!",
+"",
+0,
+"#f8fdee",
+"#dcefb4",
+"#3f5a1f",
+"#7fb03f",
+"heart",
+5,
+1,
+"quote"
+],
+[
+"Ngô Ngọc Anh",
+"Ngọc Anh",
+"Chúc cậu ngày 20/10 đánh ván nào cũng 20/1/0: 20 phần xinh đẹp, 1 phần may mắn và 0 phần nỗi buồn. Mong cậu luôn tự tin và không bao giờ từ bỏ ước mơ của mình nhé!",
+"",
+6,
+"#fff7f7",
+"#ffd3d3",
+"#7a2a35",
+"#e8505f",
+"star",
+4,
+2,
+"cards"
+],
+[
+"Vũ Quỳnh Anh",
+"Quỳnh Anh",
+"Mong những muộn phiền, vất vả của cậu sẽ chóng qua như một đêm hoa Quỳnh nở, nhường chỗ cho thành công và những nụ cười rạng rỡ trên hành trình thanh xuân đang nở rộ như hoa Anh đào.",
+"",
+5,
+"#f4ecff",
+"#ffd6e8",
+"#5a3170",
+"#c25a9a",
+"bloom",
+1,
+1,
+"bloom"
+],
+[
+"Nguyễn Vũ Huyền Anh",
+"Huyền Anh",
+"Một môi trường mới là một khởi đầu mới, mọi người sẽ luôn đồng hành với cậu trong quãng thời gian cấp ba này. Chúc cậu thật tự tin, mạnh mẽ, luôn luôn vui vẻ và gặp thật nhiều điều tốt đẹp.",
+"",
+2,
+"#f4f9ff",
+"#cfe2fb",
+"#2f4a7a",
+"#4f86d6",
+"star",
+2,
+0,
+"school"
+],
+["Vũ Quế Chi", "Quế Chi", "Chúc cậu 20/10 thơm dịu như hương quế, lặng lẽ mà bền lâu. Mong cậu luôn vững vàng trên con đường mình chọn, giữ được sự ấm áp và nụ cười thật tươi, để mỗi ngày trôi qua đều nhẹ nhàng và đáng nhớ.", "", 1, "#fffaf0", "#ffe4b8", "#7a4f22", "#d69a45", "leaf", 4, 1, "bloom"],
+[
+"Phạm Thùy Dương",
+"Thùy Dương",
+"Chúc cậu 20/10 luôn dịu dàng mà rực rỡ, mang trong mình nét đẹp thanh tao của một đóa hoa và sự quý giá của viên ngọc sáng. Mong cậu luôn tỏa sáng theo cách riêng, đi đến đâu cũng để lại những điều đẹp đẽ và đáng nhớ.",
+"",
+1,
+"#f8f6ff",
+"#d6ecf2",
+"#3b4f7a",
+"#6f9fd0",
+"gem",
+3,
+0,
+"gem"
+],
+[
+"Trần Hương Giang",
+"Hương Giang",
+"Sinh nhật cậu vừa kịp ghé thăm trước thềm 20/10, chúc cậu tuổi mới như dòng sông đón nắng, luôn lấp lánh những niềm vui và chảy về phía những chân trời rực rỡ. Mong cậu không chỉ có một ngày sinh nhật đáng nhớ mà còn có một ngày 20/10 ngập tràn yêu thương, để tháng Mười năm nay trở thành một miền ký ức thật đẹp của riêng cậu.",
+"",
+4,
+"#f1faff",
+"#ffe6b8",
+"#234f6b",
+"#3f9bd0",
+"wave",
+0,
+0,
+"bday"
+],
+[
+"Đồng Khánh Huyền",
+"Khánh Huyền",
+"Chúc cậu 20/10 luôn tràn đầy năng lượng, niềm vui có biên độ cực đại và may mắn với xác suất 100%. Mong cuộc sống của cậu luôn cân bằng bền vững, hạnh phúc được bảo toàn và thành công ngày càng tăng tốc!",
+"",
+3,
+"#f0fbff",
+"#c8ecf6",
+"#1f5468",
+"#2fa4c4",
+"wave",
+4,
+2,
+"phys"
+],
+[
+"Nguyễn Khánh Linh",
+"Khánh Linh",
+"Chúc cậu luôn tràn đầy năng lượng, nhiệt huyết trong mọi hoạt động tập thể và lan tỏa năng lượng tích cực như dòng điện không ngừng!",
+"",
+2,
+"#fffbe8",
+"#ffe48a",
+"#6e5400",
+"#e0a800",
+"bolt",
+5,
+2,
+"bolt"
+],
+[
+"Nguyễn Mai Linh",
+"Mai Linh",
+"Chúc cậu luôn tỏa sáng như ánh ban mai, giữ tâm hồn trong trẻo và gặp thật nhiều may mắn. Mong Mai Linh có một thanh xuân rực rỡ, bình an và ngập tràn tiếng cười!",
+"",
+2,
+"#f7fcff",
+"#ffeeb8",
+"#6e5a1f",
+"#e0a52b",
+"sun",
+0,
+0,
+"dawn"
+],
+[
+"Nguyễn Vũ Nhật Linh",
+"Nhật Linh",
+"Chúc cậu luôn sáng suốt như ánh sao dẫn lối, mạnh mẽ trước mọi thử thách và giữ mãi ngọn lửa nhiệt huyết trong tim. Mong mọi dự định của cậu đều thuận lợi, mỗi ngày đều có thêm một niềm vui mới!",
+"",
+3,
+"#fff6ea",
+"#ffd0a0",
+"#6e3414",
+"#e87a2a",
+"star",
+3,
+0,
+"star"
+],
+[
+"Phạm Hải Linh",
+"Hải Linh",
+"Chúc cậu 20/10 luôn vui vẻ, tự tin và tràn đầy năng lượng tích cực. Mong cậu sẽ luôn gặp may mắn, đạt được những điều mình mong muốn và có thật nhiều kỉ niệm đẹp trong quãng thanh xuân này!",
+"",
+6,
+"#f0fbff",
+"#c7ebf5",
+"#24566b",
+"#3aa6c8",
+"sun",
+6,
+1,
+"memo"
+],
+[
+"Trần Thị Mai Linh",
+"Mai Linh",
+"Chúc cậu 20/10 luôn rạng rỡ như nắng mai, dịu dàng như hoa nở. Mong Mai Linh luôn may mắn, hạnh phúc và có một thanh xuân ngập tràn tiếng cười!",
+"",
+5,
+"#fff4ee",
+"#ffd3d0",
+"#7a3330",
+"#ee7d72",
+"flower",
+3,
+1,
+"bloom"
+],
+[
+"Đỗ Phương Mai",
+"Phương Mai",
+"Chúc cậu 20/10 rạng rỡ như sắc mai vàng, luôn là bông hoa mang nét đẹp riêng, tỏa sáng theo cách của mình và đón nhận thật nhiều yêu thương",
+"",
+1,
+"#fffdf0",
+"#ffe98a",
+"#6a5a10",
+"#d9a400",
+"flower",
+1,
+0,
+"bloom"
+],
+[
+"Nguyễn Thanh Mai",
+"Thanh Mai",
+"Mong cậu luôn như nhành mai giữa gió đông, dù trải qua bao giá rét vẫn kiên cường bung nở, mang sắc vàng tô điểm cho những ngày tháng tươi đẹp phía trước",
+"",
+1,
+"#f2f8ff",
+"#fff0b3",
+"#4a4a2a",
+"#d0a000",
+"flower",
+2,
+0,
+"wind"
+],
+[
+"Đinh Trà My",
+"Trà My",
+"Chúc cậu 20/10 dịu dàng như làn trà thơm, trong trẻo như giọt sương sớm đọng trên cánh hoa, luôn mang đến cho cuộc đời một nét đẹp bình yên mà khó quên",
+"",
+4,
+"#f6fbf3",
+"#dcefe2",
+"#2f5a3f",
+"#6fae85",
+"leaf",
+0,
+1,
+"dew"
+],
+[
+"Phạm Trà My",
+"Trà My",
+"Vũ Duy - một người thích ngắm hoa trà my đã từng nói: ‘Hoa đẹp nhất chẳng cần tranh sắc, chỉ cần nở đúng mùa và tỏa hương theo cách riêng. Chúc cậu 20/10 luôn tự tin, rực rỡ và mãi là đóa hoa mang nét đẹp chẳng thể trộn lẫn.’",
+"",
+1,
+"#fffafc",
+"#ffdbe6",
+"#7a2848",
+"#c2456f",
+"bloom",
+2,
+1,
+"quote"
+],
+[
+"Phạm Thị Ngân",
+"Ngân",
+"Chúc cậu 20/10 luôn lấp lánh như ánh bạc giữa dải ngân hà, mang theo những điều tốt đẹp và tìm thấy muôn vàn niềm vui trong hành trình thanh xuân của mình.",
+"",
+2,
+"#1c2750",
+"#40529a",
+"#eef2ff",
+"#cdd9ff",
+"star",
+1,
+0,
+"galaxy"
+],
+[
+"Lê Thị Khánh Ngọc",
+"Khánh Ngọc",
+"Chúc cậu 20/10 luôn tỏa sáng như viên ngọc quý dưới ánh bình minh, giữ mãi nét trong trẻo, thanh cao và gặp được thật nhiều điều đáng trân trọng trong cuộc sống.",
+"",
+2,
+"#fff1f5",
+"#ffd8a8",
+"#7a3a35",
+"#e08a5a",
+"gem",
+3,
+0,
+"gem"
+],
+[
+"Nguyễn Thảo Phương",
+"Thảo Phương",
+"Chúc cậu 20/10 luôn là nghiệm đẹp nhất của mọi phương trình, có hạnh phúc tiến tới vô cực, nỗi buồn bằng không và may mắn luôn đồng biến theo năm tháng.",
+"",
+3,
+"#f4fff7",
+"#d6f3dc",
+"#2a5a38",
+"#3fae6a",
+"leaf",
+4,
+2,
+"math"
+],
+[
+"Phạm Mai Phương",
+"Mai Phương",
+"Mong cậu luôn rạng rỡ như nắng mai, tự do như cánh chim giữa trời rộng, để mỗi phương trời cậu đi qua đều lưu lại những dấu ấn đẹp đẽ và mỗi mùa thanh xuân đều ngập tràn hạnh phúc.",
+"",
+1,
+"#fff8fb",
+"#dff3d0",
+"#5a3a4a",
+"#e0709a",
+"flower",
+1,
+1,
+"bloom"
+],
+[
+"Nguyễn Lê Bảo Thanh",
+"Bảo Thanh",
+"Chúc cậu 20/10 luôn được bình an như báu vật được chở che, giữ mãi nét thanh tao và trong trẻo, để những năm tháng thanh xuân luôn ngân vang những giai điệu hạnh phúc.",
+"",
+4,
+"#fbf8ff",
+"#e0dafa",
+"#43397a",
+"#7a6bd1",
+"note",
+0,
+0,
+"melody"
+],
+[
+"Đào Minh Thư",
+"Minh Thư",
+"Chúc cậu 20/10 có một đời an nhiên như trang thư viết giữa ngày nắng, luôn giữ được nét dịu dàng và tâm hồn trong trẻo, để mỗi chương thanh xuân đều là một câu chuyện đáng nhớ",
+"",
+1,
+"#fffdf5",
+"#fbe9c6",
+"#6b4a20",
+"#c98a4a",
+"mail",
+4,
+1,
+"letter"
+],
+[
+"Nguyễn Thảo Uyên",
+"Thảo Uyên",
+"Chúc cậu 20/10 dịu dàng như làn nước mùa thu, thanh tao như tiếng sáo giữa trời chiều, mong cuộc sống của cậu luôn êm đềm, sâu lắng và ngân lên những giai điệu hạnh phúc.",
+"",
+4,
+"#fbf8ec",
+"#d7ebdf",
+"#3a5a4a",
+"#5b9a7d",
+"wave",
+5,
+0,
+"flute"
+],
+[
+"Phan Hà Phương Vy",
+"Phương Vy",
+"Chúc cậu 20/10 luôn tự do như mây trời, rạng rỡ như ánh bình minh và dịu dàng như làn gió xuân, mong mọi ước mơ đều hóa thành đôi cánh đưa cậu đến những chân trời tuyệt đẹp.",
+"",
+4,
+"#f0f8ff",
+"#ffd9e8",
+"#4a3a6a",
+"#e0709a",
+"cloud",
+1,
+1,
+"sky"
+]
+];
+
+const M={
+flower:'<g transform="translate(20 20)">'+[0,72,144,216,288].map(r=>'<ellipse cy="-8" rx="5.5" ry="8.5" transform="rotate('+r+')"/>').join('')+'<circle r="3.6" fill="#fff" opacity=".85"/></g>',
+bloom:'<g transform="translate(20 20)">'+[0,45,90,135,180,225,270,315].map(r=>'<ellipse cy="-10" rx="3.2" ry="9.5" transform="rotate('+r+')"/>').join('')+[22,112,202,292].map(r=>'<ellipse cy="-5" rx="3" ry="5.5" fill="#fff" opacity=".6" transform="rotate('+r+')"/>').join('')+'</g>',
+gem:'<path d="M20 4l13 8-13 24L7 12z"/><path d="M7 12h26M20 4l-5 8 5 24 5-24z" stroke="#fff" stroke-width="1" fill="none" opacity=".7"/>',
+sun:'<circle cx="20" cy="20" r="7.5"/><g stroke="currentColor" stroke-width="2.6" stroke-linecap="round">'+[0,45,90,135,180,225,270,315].map(r=>'<path d="M20 4v5" transform="rotate('+r+' 20 20)"/>').join('')+'</g>',
+wave:'<g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M3 12q4.5-6 9 0t9 0 9 0 7 0"/><path d="M3 21q4.5-6 9 0t9 0 9 0 7 0"/><path d="M3 30q4.5-6 9 0t9 0 9 0 7 0"/></g>',
+leaf:'<path d="M5 35C5 16 17 5 35 5c0 17-11 30-30 30z"/><path d="M8 32L27 13" stroke="#fff" stroke-width="1.5" opacity=".7"/>',
+star:'<path d="M20 2q2 16 18 18-16 2-18 18-2-16-18-18 16-2 18-18z"/>',
+heart:'<path d="M20 35C6 25 3 16 8 10c4-4 10-3 12 3 2-6 8-7 12-3 5 6 2 15-12 25z"/>',
+note:'<path d="M27 5v21a6 6 0 1 1-3-5.2V11l-11 3v14a6 6 0 1 1-3-5.2V9z"/>',
+bolt:'<path d="M24 3L9 23h10l-3 14 15-21H21z"/>',
+mail:'<path d="M4 9h32v22H4z"/><path d="M4 9l16 13L36 9" stroke="#fff" stroke-width="1.8" fill="none" opacity=".85"/>',
+cloud:'<path d="M10 31a7.5 7.5 0 010-15 10 10 0 0119-3 8.5 8.5 0 011 18z"/>',
+moon:'<path d="M26 4a16 16 0 1 0 10 24A14 14 0 0 1 26 4z"/>',
+coin:'<circle cx="20" cy="20" r="15"/><circle cx="20" cy="20" r="10" fill="none" stroke="#fff" stroke-width="1.5" opacity=".7"/><path d="M20 13l2 5 5 .5-4 3.5 1.3 5-4.3-3-4.3 3 1.3-5-4-3.5 5-.5z" fill="#fff" opacity=".8"/>'
+};
+const mo=(k,c)=>'<svg class="mo '+c+'" viewBox="0 0 40 40" aria-hidden="true">'+M[k]+'</svg>';
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/[^a-z\s]/g,'').replace(/\s+/g,' ').trim();
+const idx=W.map(w=>norm(w[0]));
+function find(q){
+  q=norm(q); if(!q) return -1;
+  let i=idx.indexOf(q); if(i>-1) return i;
+  if(q.split(' ').length>=3){const m=idx.map((n,k)=>n.includes(q)?k:-1).filter(k=>k>-1); if(m.length===1) return m[0];}
+  return -1;
+}
+const $=id=>document.getElementById(id);
+const DEC={quote:['“ ” “ ”','none'],cards:['♠ ♥ 20 ♦ 1 ♣ 0','none'],bloom:['❀ ✿ ❁ ✿ ❀','none'],school:['✎ ABC ☆ ✓ ✎','lines'],love:['♥ ♡ ♥ ♡ ♥','none'],gem:['◇ ✧ ❀ ◇ ✧','none'],bday:['✦ 🎂 ✧ 🎈 ✦','none'],phys:['∿ 100% Δ ∑ v↗ ∿','grid'],bolt:['ϟ ∿ Ω ± ϟ','grid'],dawn:['✦ ☼ ✧ ☼ ✦','none'],star:['★ ✦ ✧ ☆ ✦','none'],memo:['✦ ♥ ✧ ❀ ✦','none'],wind:['∽ ❀ ∽ ❁ ∽','none'],dew:['◦ ❀ ○ ◦ ❁ ∘','none'],galaxy:['✦ ✧ ★ ✦ ✧ ★','dots'],math:['x² ∞ √ Σ π f(x)','grid'],melody:['♪ ♫ ♬ ♩ ♪ ♫','staff'],letter:['✉ ✎ ❀ ✉ ✎ ❀','lines'],flute:['∿ ♪ ◦ ∿ ♫ ◦','none'],sky:['☁ ✧ ☁ ✦ ☁ ✧','none']};
+const PAT={none:'linear-gradient(transparent,transparent)',grid:'linear-gradient(rgba(0,0,0,.05) 1px,transparent 1px) 0 0/22px 22px,linear-gradient(90deg,rgba(0,0,0,.05) 1px,transparent 1px) 0 0/22px 22px',lines:'repeating-linear-gradient(transparent 0 27px,rgba(0,0,0,.07) 27px 28px)',staff:'repeating-linear-gradient(transparent 0 9px,rgba(0,0,0,.08) 9px 10px)',dots:'radial-gradient(rgba(255,255,255,.4) 1px,transparent 1.6px) 0 0/20px 20px'};
+function show(){
+  const q=$('name').value, i=find(q), err=$('err'), st=$('stage');
+  if(i<0){st.innerHTML='';err.textContent=norm(q).split(' ').length<2&&q.trim()?'Cậu nhớ nhập cả họ và tên nhé.':'Mình chưa tìm thấy tên này. Cậu kiểm tra lại giúp mình nhé.';return;}
+  err.textContent='';
+  const [full,short,txt,sig,ef,c1,c2,tx,ac,m,fr,fo,dc]=W[i],[gs,pt]=DEC[dc];
+  const gl='<div class="bg gl">'+gs.split(' ').slice(0,6).map(g=>'<span>'+g+'</span>').join('')+'</div>';
+  st.innerHTML='<div class="wish f'+fr+' n'+fo+' a'+(i%4)+(txt.length>200?' lg':'')+'" style="--c1:'+c1+';--c2:'+c2+';--tx:'+tx+';--ac:'+ac+';--pat:'+PAT[pt]+'">'+gl+mo(m,'bg b1')+mo(m,'bg b2')+mo(m,'bg b3')+mo(m,'big')+'<p class="to">Gửi riêng cho</p><h2 class="nm">'+short+'</h2><p class="full">'+full+'</p><div class="div"><i></i>'+mo(m,'sm')+'<i></i></div><p class="txt">'+txt+'</p>'+(sig?'<p class="by">'+sig+'</p>':'')+'<p class="sig">Chúc mừng ngày 20/10 ✿</p></div><button class="ghost" id="replay">Xem lại hiệu ứng</button><button class="ghost" id="again">Tìm tên khác</button>';
+  $('again').onclick=()=>{st.innerHTML='';$('name').value='';$('name').focus();};
+  $('replay').onclick=()=>play(ef,ac);
+  $('name').blur();
+  st.scrollIntoView({behavior:'smooth',block:'center'});
+  play(ef,ac);
+}
+$('go').onclick=show;
+$('name').addEventListener('keydown',e=>{if(e.key==='Enter')show();});
+
+/* ===== Hiệu ứng toàn màn hình ===== */
+const cv=$('fx'),cx=cv.getContext('2d');
+let VW=innerWidth,VH=innerHeight,P=[],emit=null,fr=0,dur=0,run=false;
+function fit(){const d=Math.min(devicePixelRatio||1,2);VW=innerWidth;VH=innerHeight;cv.width=VW*d;cv.height=VH*d;cx.setTransform(d,0,0,d,0,0);}
+fit();addEventListener('resize',fit);
+const R=(a,b)=>a+Math.random()*(b-a);
+const PINK=['#f08ab0','#ffb3cb','#ff8fb1','#ffd1df','#e0678f','#ffffff','#ffc2d6'];
+const GOLD=['#ffe29a','#ffd36b','#fff3c9','#ffffff'];
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function add(o){P.push(Object.assign({x:0,y:0,vx:0,vy:0,g:0,s:10,r:0,vr:0,c:'#f08ab0',k:'heart',l:1,d:.005,sw:0,sp:R(0,6),fr:1,pulse:0},o));}
+const E=[
+f=>{ if(f===0)for(let i=0;i<70;i++)add({k:i%3?'petal':'heart',x:R(0,VW),y:VH+20,vx:R(-3,3),vy:-R(11,20),g:.3,s:R(9,18),r:R(0,6),vr:R(-.12,.12),c:pick(PINK),d:.006,fr:.992});
+  if(f<50)for(let i=0;i<2;i++)add({k:'heart',x:R(0,VW),y:VH+20,vx:R(-2,2),vy:-R(9,17),g:.28,s:R(8,16),r:R(-.4,.4),vr:R(-.05,.05),c:pick(PINK),d:.006}); },
+f=>{ if(f<260&&Math.random()<.7)add({k:'petal',x:R(0,VW),y:-30,vx:R(-.3,.3),vy:R(1.2,3),sw:R(.6,1.6),s:R(8,16),r:R(0,6),vr:R(-.04,.04),c:pick(PINK),d:.0025}); },
+f=>{ if(f<230)for(let i=0;i<2;i++)add({k:'star',x:R(0,VW),y:R(0,VH),s:R(7,20),r:R(0,1),vr:R(-.01,.01),c:pick(GOLD.concat(PINK)),d:R(.012,.02),pulse:1,vy:R(-.2,.2)}); },
+f=>{ if(f<210&&f%32===0){const x=R(VW*.12,VW*.88),y=R(VH*.12,VH*.55),c=pick(PINK),n=30;for(let i=0;i<n;i++){const a=i/n*6.283,v=R(3,7);add({k:i%2?'heart':'dot',x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,g:.07,s:i%2?R(6,10):R(2,4),r:R(-.5,.5),c:i%4?c:pick(GOLD),d:.012,fr:.965});}} },
+f=>{ if(f<260&&Math.random()<.55)add({k:'bubble',x:R(0,VW),y:VH+30,vy:-R(1,3),sw:R(.3,1),s:R(8,34),c:pick(['#ffa8c5','#ffc9dc','#d9b8ff','#ffffff']),d:.0028}); },
+f=>{ if(f<200&&f%5===0)add({k:'flower',x:R(30,VW-30),y:R(40,VH-40),s:R(18,44),r:R(0,6),vr:R(-.01,.01),c:pick(['#ffb3cb','#ff8fb1','#ffd1df','#f7a4c3','#ffffff']),d:.008,pulse:1}); },
+f=>{ if(f===0)for(let i=0;i<110;i++){const L=i%2,v=R(13,26),a=R(.25,1.1);add({k:'rect',x:L?0:VW,y:VH,vx:(L?1:-1)*Math.sin(a)*v*.8,vy:-Math.cos(a)*v,g:.35,s:R(6,12),r:R(0,6),vr:R(-.3,.3),c:pick(PINK.concat(GOLD)),d:.005,fr:.985});}
+  if(f<80)add({k:'rect',x:R(0,VW),y:-10,vy:R(2,4),sw:R(.5,1.5),s:R(6,11),r:R(0,6),vr:R(-.2,.2),c:pick(PINK.concat(GOLD)),d:.004}); },
+f=>{ if(f<220&&f%7===0)add({k:'heart',x:R(20,VW-20),y:VH+40,vy:-R(1.6,3.2),sw:R(.5,1.4),s:R(18,42),c:pick(PINK.slice(0,5)),d:.0032,r:R(-.3,.3)}); }
+];
+function play(n,ac){P=[];fr=0;dur=290;emit=E[n];PINK[4]=ac;if(!run){run=true;requestAnimationFrame(tick);}}
+function heart(s){cx.beginPath();cx.moveTo(0,s*.35);cx.bezierCurveTo(-s,-s*.4,-s*.5,-s,0,-s*.4);cx.bezierCurveTo(s*.5,-s,s,-s*.4,0,s*.35);cx.closePath();}
+function star(s){cx.beginPath();cx.moveTo(0,-s);cx.quadraticCurveTo(0,0,s,0);cx.quadraticCurveTo(0,0,0,s);cx.quadraticCurveTo(0,0,-s,0);cx.quadraticCurveTo(0,0,0,-s);cx.closePath();}
+function tick(){
+  cx.clearRect(0,0,VW,VH);
+  if(fr<dur&&emit)emit(fr);
+  fr++;
+  P=P.filter(p=>p.l>0&&p.y<VH+80&&p.y>-120&&p.x>-120&&p.x<VW+120);
+  for(const p of P){
+    p.vy+=p.g;p.vx*=p.fr;if(p.fr<1)p.vy*=p.fr;
+    p.sp+=.04;p.x+=p.vx+Math.sin(p.sp)*p.sw;p.y+=p.vy;p.r+=p.vr;p.l-=p.d;
+    const a=p.pulse?Math.sin(Math.PI*(1-Math.max(p.l,0))):Math.min(1,p.l*3);
+    cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.globalAlpha=Math.max(0,Math.min(.88,a));cx.fillStyle=p.c;
+    const s=p.s;
+    if(p.k==='heart'){heart(s);cx.fill();}
+    else if(p.k==='petal'){cx.beginPath();cx.ellipse(0,0,s*.45,s,0,0,7);cx.fill();}
+    else if(p.k==='dot'){cx.beginPath();cx.arc(0,0,s,0,7);cx.fill();}
+    else if(p.k==='star'){star(s);cx.fill();cx.rotate(.785);star(s*.55);cx.fill();}
+    else if(p.k==='rect'){cx.fillRect(-s/2,-s/4,s,s/2);}
+    else if(p.k==='bubble'){cx.globalAlpha*=.75;cx.strokeStyle=p.c;cx.lineWidth=1.6;cx.beginPath();cx.arc(0,0,s,0,7);cx.stroke();cx.globalAlpha*=.25;cx.fill();cx.globalAlpha=Math.max(0,a)*.8;cx.fillStyle='#fff';cx.beginPath();cx.arc(-s*.35,-s*.35,s*.18,0,7);cx.fill();}
+    else if(p.k==='flower'){const g=Math.min(1,(1-p.l)*6),z=s*g;for(let i=0;i<5;i++){cx.rotate(1.2566);cx.beginPath();cx.ellipse(0,-z*.55,z*.3,z*.55,0,0,7);cx.fill();}cx.fillStyle='#ffe29a';cx.beginPath();cx.arc(0,0,z*.2,0,7);cx.fill();}
+    cx.restore();
+  }
+  if(P.length||fr<dur)requestAnimationFrame(tick);else{run=false;cx.clearRect(0,0,VW,VH);}
+}
+/* cánh hoa và đốm sáng trôi nhẹ ở trang đầu */
+for(let i=0;i<18;i++){const e=document.createElement('i'),s=i%3?R(9,17):R(3,6);e.className='fp'+(i%3?'':' dt');e.style.cssText='left:'+R(0,100)+'%;width:'+s+'px;height:'+s+'px;animation-duration:'+R(14,28)+'s;animation-delay:'+(-R(0,28))+'s';document.body.appendChild(e);}
+</script>
+</body>
+</html>
